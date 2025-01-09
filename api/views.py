@@ -15,3 +15,13 @@ class BackEndApi(APIView):
 
      # Coloque el nombre de su colección en el Realtime Database
      collection_name = 'datos-collections'
+     def get(self, request):
+
+         # Referencia a la colección
+          ref = db.reference(f'{self.collection_name}')
+		    
+         # get: Obtiene todos los elementos de la colección
+          data = ref.get()
+
+         # Devuelve un arreglo JSON
+          return Response(data, status=status.HTTP_200_OK)
